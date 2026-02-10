@@ -1,6 +1,16 @@
 "use client";
 
-import { PixelValentine } from '../components/PixelValentine';
+import { PixelValentine } from "../components/PixelValentine";
+
+export default function HomePage() {
+  return (
+    <main>
+      <PixelValentine />
+    </main>
+  );
+}
+
+
 
 // =========================================================================
 // ▼▼▼ РЕДАКТИРУЙ ТОЛЬКО ЭТОТ СПИСОК ▼▼▼
@@ -16,7 +26,7 @@ const CHARACTER_OPTIONS = [
   { 
     id: 'char2', 
     name: '/tanya.png', 
-    image: '/tanya.png',           // Путь к PNG второго персонажа
+    image: '/tanya,',           // Путь к PNG второго персонажа
     background: '/bg-2.png',        // Фон для второго персонажа
     text: 'Текст про второго...'
   },
@@ -35,12 +45,3 @@ const mySlidesData = CHARACTER_OPTIONS.map(character => ({
   text: character.text,
 }));
 // ---------------------------------------------------------------------
-
-
-export default function Home() {
-  return (
-    <main>
-      <PixelValentine slides={mySlidesData} />
-    </main>
-  );
-}

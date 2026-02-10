@@ -20,14 +20,21 @@ interface Slide {
 }
 
 
-const CHARACTER_OPTIONS = [
+type CharacterOption = {
+  id: string;
+  name: string;
+  image: string;
+  color: string;
+};
+
+const CHARACTER_OPTIONS: CharacterOption[] = [
   {
     id: 'char1',
     name: 'Таня',
-    image: '/tanya.png', // ← PNG из public
+    image: '/tanya.png',
+    color: '#000000', // поставь нужный цвет
   },
 ];
-
 
 
 const BACKGROUND_THEMES = [
@@ -452,7 +459,7 @@ content: (
       id: 'slide8-left',
       background: 'thorns-png',
       content: (
-        <idv className="slide-content">
+        <div className="slide-content">
           <div className="vn-focus">
       <TypewriterText
             text="Вы проходите сквозь лес..."
@@ -461,7 +468,7 @@ content: (
 
 </div>
             
-        </idv>
+        </div>
       ),
       buttons: [{ text: 'Идти', nextSlide: 'slide9', variant: 'primary' }],
     },
