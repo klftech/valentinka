@@ -2,12 +2,8 @@
 
 import { PixelValentine } from "../components/PixelValentine";
 
-export default function HomePage() {
-  return (
-    <main>
-      <PixelValentine />
-    </main>
-  );
+export default function Page() {
+  return <PixelValentine />;
 }
 
 

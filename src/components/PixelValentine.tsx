@@ -30,11 +30,12 @@ type CharacterOption = {
 const CHARACTER_OPTIONS: CharacterOption[] = [
   {
     id: 'char1',
-    name: 'Таня',
-    image: '/tanya.png',
+    name: 'Юля',
+    image: '/ulya.png',
     color: '#000000', // поставь нужный цвет
   },
 ];
+
 
 
 const BACKGROUND_THEMES = [
@@ -61,6 +62,7 @@ const [bgmStarted, setBgmStarted] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
 
   const [envelopeOpened, setEnvelopeOpened] = useState(false); // ОДИН РАЗ
+const [creditsOpen, setCreditsOpen] = useState(false);
 
   const [selectedPath, setSelectedPath] = useState<'left' | 'right' | null>(null);
   const [selectedFlower, setSelectedFlower] = useState<string | null>(null);
@@ -207,7 +209,7 @@ const hasTypewriter =
               />
             ))}
           </div>
-          <h1 className="pixel-text welcome-text">💗💗💗Тане💗💗💗</h1>
+          <h1 className="pixel-text welcome-text">💗💗💗Юле💗💗💗</h1>
         </div>
       ),
       buttons: [{ text: 'Старт', nextSlide: 'slide2', variant: 'primary' }],
@@ -284,7 +286,7 @@ const hasTypewriter =
   />
 
   <TypewriterText
-    text="Ну ладно. А всё-таки?"
+    text="Ну ладно... А всё-таки?"
     onComplete={() => setTimeout(() => setShowButtons(true), 800)}
   />
 </div>
@@ -754,7 +756,7 @@ slide10: {
 
       {showButtons && (
         <div className="dialogue-box final">
-          <TypewriterText text="Спасибо, что нашла мое письмо. Будешь моей валентинкой?" />
+          <TypewriterText text="Спасибо, что нашла мое письмо, Юля. Будешь моей валентинкой?" />
         </div>
       )}
     </div>
@@ -798,82 +800,55 @@ slide10: {
         { text: 'Нет, я подумаю', nextSlide: 'slide10', variant: 'secondary' },
       ],
     },
-    'slide-yes': {
-      id: 'slide-yes',
-      background: 'final-bg',
-      content: (
-<div className="slide-content">
-  <div className="slide-content">
+'slide-yes': {
+  id: 'slide-yes',
+  background: 'final-bg',
+  content: (
+    <div className="slide-content">
+      <div className="corner-show">
+        <div className="emitter tl">{Array.from({ length: 10 }).map((_, i) => <span key={`tl-${i}`} className="corner-heart" />)}</div>
+        <div className="emitter tr">{Array.from({ length: 10 }).map((_, i) => <span key={`tr-${i}`} className="corner-heart" />)}</div>
+        <div className="emitter bl">{Array.from({ length: 10 }).map((_, i) => <span key={`bl-${i}`} className="corner-heart" />)}</div>
+        <div className="emitter br">{Array.from({ length: 10 }).map((_, i) => <span key={`br-${i}`} className="corner-heart" />)}</div>
+      </div>
 
-  <div className="corner-show">
-    <div className="emitter tl">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <span key={`tl-${i}`} className="corner-heart" />
-      ))}
+      <div className="cherry-blossom-tree">
+        <div className="falling-petals celebration">
+          {[...Array(40)].map((_, i) => (
+            <div
+              key={i}
+              className="petal pink"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${4 + Math.random() * 2}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="heart-explosion">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="pixel-heart"
+              style={{ '--angle': `${i * 45}deg` } as React.CSSProperties}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* КОТ НА СТРАНИЦЕ */}
+      <img src="/cat.gif" alt="cat" className="final-cat-top" draggable={false} />
+
+      <div className="dialogue-box final celebration-text">
+        <TypewriterText text="💗 Ура Юля, теперь ты моя валентинка! 💗" />
+      </div>
     </div>
+  ),
+},
 
-    <div className="emitter tr">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <span key={`tr-${i}`} className="corner-heart" />
-      ))}
-    </div>
 
-    <div className="emitter bl">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <span key={`bl-${i}`} className="corner-heart" />
-      ))}
-    </div>
-
-    <div className="emitter br">
-      {Array.from({ length: 10 }).map((_, i) => (
-        <span key={`br-${i}`} className="corner-heart" />
-      ))}
-    </div>
-  </div>
-
-  {/* дальше твой текущий slide yes */}
-  ...
-</div>
-
-  <div className="cherry-blossom-tree">
-    <div className="falling-petals celebration">
-      {[...Array(40)].map((_, i) => (
-        <div
-          key={i}
-          className="petal pink"
-          style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 2}s`,
-            animationDuration: `${4 + Math.random() * 2}s`,
-          }}
-        />
-      ))}
-    </div>
-
-    <div className="heart-explosion">
-      {[...Array(8)].map((_, i) => (
-        <div
-          key={i}
-          className="pixel-heart"
-          style={{ '--angle': `${i * 45}deg` } as React.CSSProperties}
-        />
-      ))}
-    </div>
-  </div>
-
-  {/* КОТ СВЕРХУ */}
-<img
-  src="/cat.gif"
-  alt="cat"
-  className="final-cat-top"
-/>
-
-  <div className="dialogue-box final celebration-text">
-    <TypewriterText text="💗 Ура Таня, теперь ты моя валентинка! 💗" />
-  </div>
-</div>
-      ),
-    },
   };
 
   const currentSlideData = slides[currentSlide];
@@ -888,6 +863,18 @@ slide10: {
   }, [currentSlide]);
 
 useEffect(() => {
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') setCreditsOpen(false);
+  };
+  window.addEventListener('keydown', onKeyDown);
+  return () => window.removeEventListener('keydown', onKeyDown);
+}, []);
+
+useEffect(() => {
+  if (currentSlide !== 'slide-yes') setCreditsOpen(false);
+}, [currentSlide]);
+
+useEffect(() => {
   if (currentSlide === 'slide10') {
     setEnvelopeOpened(false);
     setShowButtons(false);
@@ -900,9 +887,12 @@ useEffect(() => {
   }, [selectedTheme]);
 
   return (
- <div className="pixel-valentine">
+<div className={`pixel-valentine ${creditsOpen ? 'credits-open' : ''}`}>
   <audio ref={bgmRef} src="/bgm.mp3" preload="auto" />
       <div className="controls-panel">
+
+
+        
 <button
   className="control-button"
   onClick={async () => {
@@ -912,8 +902,12 @@ useEffect(() => {
   aria-label="Toggle music"
 >
   {musicEnabled ? <Music size={16} /> : <VolumeX size={16} />}
+
+  
 </button>
         
+        
+
         <button
           className="control-button"
           onClick={() => {
@@ -962,6 +956,7 @@ useEffect(() => {
                 ))}
               </div>
             </div>
+
 
             <button className="close-button" onClick={() => setShowSettings(false)}>
               Закрыть
